@@ -1,7 +1,8 @@
 import { Component } from "react";
-// import ImageGallery from "./ImageGallery";
+import ImageGallery from "./ImageGallery";
 import Modal from "./Modal";
-// import Searchbar from "./Searchbar";
+import Searchbar from "./Searchbar";
+// import { ReactComponent as SearchIcon } from '../icons/search.svg';
 
 class App extends Component{
 
@@ -26,13 +27,17 @@ class App extends Component{
 
     return (
       <>
-        {/* <Searchbar onSubmit={this.searchQuery} />
-        <ImageGallery/> */}
+        <Searchbar onSubmit={this.searchQuery} />
+        <ImageGallery/>
         <button type="button" onClick={this.toggleModal}>Open modal</button>
-        {showModal && <Modal>
-          <img src="" alt="" />
-          <button type="button" onClick={this.toggleModal}>Close</button>
-        </Modal>}
+
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+          {/* <img src="" alt="" /> */}
+            {/* <button type="button" onClick={this.toggleModal}>Close</button> */}
+            <p>hello</p>
+          </Modal>
+        )}
       
       </>
     )
