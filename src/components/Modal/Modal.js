@@ -18,9 +18,7 @@ class Modal extends Component {
   render() {
     return (
       <div className={s.Overlay}>
-        <div className={s.Modal}>
-          <img src="" alt="" />
-        </div>
+        <div className={s.Modal}>{this.props.children}</div>
       </div>
     );
   }
