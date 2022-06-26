@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import s from './Searchbar.module.css';
 import PropTypes from 'prop-types';
-import { ReactComponent as SearchIcon } from '../../icons/search.svg';
+import { MdOutlineSearch } from 'react-icons/md';
 
 class Searchbar extends Component {
   state = {
@@ -33,7 +33,7 @@ class Searchbar extends Component {
         <form onSubmit={this.handleSubmit} className={s.SearchForm}>
           <button type="submit" className={s['SearchForm-button']}>
             <span className={s['SearchForm-button-label']}>Search</span>
-            <SearchIcon />
+            <MdOutlineSearch size={22} />
           </button>
 
           <input
