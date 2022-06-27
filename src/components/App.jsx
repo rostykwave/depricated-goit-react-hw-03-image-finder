@@ -81,10 +81,10 @@ class App extends Component {
               <img src={image.previewURL} alt={image.tags}></img>
             </div>
           ))} */}
-        <ImageGallery images={this.state.images} />
-        {/* <button type="button" onClick={this.toggleModal}>
+        <button type="button" onClick={this.toggleModal}>
           Open modal
-        </button> */}
+        </button>
+        <ImageGallery images={this.state.images} />
 
         {showModal && (
           <Modal onClose={this.toggleModal}>
