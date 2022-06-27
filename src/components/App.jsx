@@ -2,11 +2,12 @@ import { Component } from 'react';
 import ImageGallery from './ImageGallery';
 import Modal from './Modal';
 import Searchbar from './Searchbar';
-import { fetchArticlesWithQuery } from 'services/api';
+import { fetchImagesWithQuery } from 'services/api';
 
 class App extends Component {
   state = {
-    articles: [],
+    // images: [],
+    images: null,
     isLoading: false,
     error: null,
     showModal: false,
@@ -16,15 +17,39 @@ class App extends Component {
     console.log('componentDidMount');
     this.setState({ isLoading: true });
 
-    try {
-      const articles = fetchArticlesWithQuery('cat');
-      this.setState({ articles });
-    } catch (error) {
-      console.log('eroorr');
-      this.setState({ error });
-    } finally {
-      this.setState({ isLoading: false });
-    }
+    setTimeout(() => {
+      const searchQuery = 'cat';
+      const KEY = '27289011-631f37c1ff3a5cbdb3c134909';
+      const url = `https://pixabay.com/api/?q=${searchQuery}&page=1&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`;
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          // console.log(data.hits);
+          const images = data.hits;
+          this.setState({ images });
+        })
+        .finally(this.setState({ isLoading: false }));
+    }, 1000);
+
+    // try {
+    //   // const images = fetchImagesWithQuery('cat');
+    //   //  this.setState({ images });
+    //   const searchQuery = 'cat';
+    //   const KEY = '27289011-631f37c1ff3a5cbdb3c134909';
+    //   const url = `https://pixabay.com/api/?q=${searchQuery}&page=1&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`;
+    //   fetch(url)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       // console.log(data.hits);
+    //       const images = data.hits;
+    //       this.setState({ images });
+    //     });
+    // } catch (error) {
+    //   console.log('eroorr');
+    //   this.setState({ error });
+    // } finally {
+    //   this.setState({ isLoading: false });
+    // }
   }
 
   toggleModal = () => {
@@ -33,8 +58,11 @@ class App extends Component {
     }));
   };
 
-  searchQuery = data => {
-    console.log(data);
+  // searchQuery = query => {
+  //   console.log(query);
+  // };
+  handleFormSubmit = query => {
+    console.log(query);
   };
 
   render() {
@@ -42,11 +70,19 @@ class App extends Component {
 
     return (
       <>
-        <Searchbar onSubmit={this.searchQuery} />
-        <ImageGallery />
-        <button type="button" onClick={this.toggleModal}>
+        <Searchbar onSubmit={this.handleFormSubmit} />
+        {this.state.isLoading && <div>Loading...</div>}
+        {this.state.images &&
+          this.state.images.map(image => (
+            <div>
+              {image.id}
+              <img src={image.previewURL} alt={image.tags}></img>
+            </div>
+          ))}
+        {/* <ImageGallery data={this.state.images} /> */}
+        {/* <button type="button" onClick={this.toggleModal}>
           Open modal
-        </button>
+        </button> */}
 
         {showModal && (
           <Modal onClose={this.toggleModal}>

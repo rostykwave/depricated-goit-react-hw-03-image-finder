@@ -9,14 +9,15 @@ class Searchbar extends Component {
   };
 
   handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+    this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
+    // const { name, value } = e.currentTarget;
+    // this.setState({ [name]: value.toLowerCase() });
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.searchQuery);
 
     // this.reset;
   };
