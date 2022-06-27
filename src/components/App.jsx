@@ -74,14 +74,14 @@ class App extends Component {
       <>
         <Searchbar onSubmit={this.handleFormSubmit} />
         {this.state.isLoading && <div>Loading...</div>}
-        {this.state.images &&
+        {/* {this.state.images &&
           this.state.images.map(image => (
             <div>
               {image.id}
               <img src={image.previewURL} alt={image.tags}></img>
             </div>
-          ))}
-        {/* <ImageGallery data={this.state.images} /> */}
+          ))} */}
+        <ImageGallery images={this.state.images} />
         {/* <button type="button" onClick={this.toggleModal}>
           Open modal
         </button> */}

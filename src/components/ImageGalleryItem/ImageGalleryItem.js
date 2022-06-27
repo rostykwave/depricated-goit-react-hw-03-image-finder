@@ -1,20 +1,17 @@
-import s from './ImageGalleryItemItem.module.css';
-// import PropTypes from 'prop-types';
+import s from './ImageGalleryItem.module.css';
+import PropTypes from 'prop-types';
 
-const ImageGalleryItem = () => {
+const ImageGalleryItem = ({ webformatURL, largeImageURL }) => {
   return (
     <li className={s.ImageGalleryItem}>
-      <img src="" alt="" className={s['ImageGalleryItem-image']} />
+      <img src={webformatURL} alt="" className={s['ImageGalleryItem-image']} />
     </li>
   );
 };
 
-// ImageGalleryItem.propTypes = {
-//   friends: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//     })
-//   ),
-// };
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+};
 
 export default ImageGalleryItem;
