@@ -2,6 +2,7 @@ import { Component } from 'react';
 import s from './Searchbar.module.css';
 import PropTypes from 'prop-types';
 import { MdOutlineSearch } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 class Searchbar extends Component {
   state = {
@@ -16,6 +17,12 @@ class Searchbar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    if (this.state.searchQuery.trim() === '') {
+      // alert('enter your query in searchfield');
+      toast.error('Enter your query in searchfield');
+      return;
+    }
 
     this.props.onSubmit(this.state.searchQuery);
 

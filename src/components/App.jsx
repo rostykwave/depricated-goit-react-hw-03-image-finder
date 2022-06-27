@@ -3,6 +3,8 @@ import ImageGallery from './ImageGallery';
 import Modal from './Modal';
 import Searchbar from './Searchbar';
 import { fetchImagesWithQuery } from 'services/api';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   state = {
@@ -91,6 +93,7 @@ class App extends Component {
             <p>hello</p>
           </Modal>
         )}
+        <ToastContainer autoClose={3000} />
       </>
     );
   }
